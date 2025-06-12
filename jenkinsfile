@@ -8,7 +8,7 @@ pipeline{
                 checkout([
                     $class : 'GitSCM',
                     branches : [[name : 'main']],
-                    userRemoteConfigs = [[
+                    userRemoteConfigs : [[
                         url : "https://github.com/Bharath18sv/Crop-Price-Prediction.git",
                         credentialsId: "new_slaveid"
                     ]]

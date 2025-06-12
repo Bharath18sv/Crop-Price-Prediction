@@ -6,7 +6,7 @@ pipeline{
             steps{
             script{
                 checkout([
-                    $class = 'GitSCM',
+                    $class : 'GitSCM',
                     branches : [[name : 'main']],
                     userRemoteConfigs = [[
                         url : "https://github.com/Bharath18sv/Crop-Price-Prediction.git",

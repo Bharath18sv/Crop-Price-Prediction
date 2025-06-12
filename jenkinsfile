@@ -1,0 +1,44 @@
+pipeline{
+    agent any
+
+    stages{
+        stage('Clone'){
+            steps{
+            script{
+                checkout([
+                    $class = 'GitSCM',
+                    branches : [[name : 'main']],
+                    userRemoteConfigs = [[
+                        url : "https://github.com/Bharath18sv/Crop-Price-Prediction.git",
+                        credentialsId: "new_slaveid"
+                    ]]
+                ])
+            }
+        }
+        }
+
+        stage('build docker image'){
+            steps{
+                sh '''
+                    docker build -t cppimage .
+                '''
+            }
+        }
+
+        stage('Remove existing container'){
+            steps{ //remove all containers or if return true if already removed
+                sh '''
+                    docker rm -f $(docker ps -aq) || true
+                '''
+            }
+        }
+
+        stage('Run the container'){
+            steps{
+                sh '''
+                    docker run -d -p 8000:8000 --name cppContainer cppimage
+                '''
+            }
+        }
+    }
+}

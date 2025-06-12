@@ -28,6 +28,7 @@ pipeline{
                 ])
                 {
                     sh '''
+                        export PATH="/opt/homebrew/bin:$PATH"
                         docker login 
                     '''
                 }

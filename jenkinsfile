@@ -39,6 +39,7 @@ pipeline{
             steps{
                 sh '''
                     export PATH="/opt/homebrew/bin:$PATH"
+                    pwd
                     docker run -d -p 8000:8000 --name cppContainer cppimage
                 '''
             }

@@ -20,7 +20,7 @@ pipeline{
         stage('build docker image'){
             steps{
                 sh '''
-                    export PATH="/opt/homebrew/bin/docker:$PATH"
+                    export PATH="/opt/homebrew/bin:$PATH"
                     docker build -t cppimage .
                 '''
             }
@@ -29,7 +29,7 @@ pipeline{
         stage('Remove existing container'){
             steps{ //remove all containers or if return true if already removed
                 sh '''
-                    export PATH="/opt/homebrew/bin/docker:$PATH"
+                    export PATH="/opt/homebrew/bin:$PATH"
                     docker rm -f $(docker ps -aq) || true
                 '''
             }
@@ -38,7 +38,7 @@ pipeline{
         stage('Run the container'){
             steps{
                 sh '''
-                    export PATH="/opt/homebrew/bin/docker:$PATH"
+                    export PATH="/opt/homebrew/bin:$PATH"
                     docker run -d -p 8000:8000 --name cppContainer cppimage
                 '''
             }

@@ -30,7 +30,6 @@ pipeline{
             steps{ //remove all containers or if return true if already removed
                 sh '''
                     export PATH="/opt/homebrew/bin:$PATH"
-                    docker login
                     docker rm -f $(docker ps -aq) || true
                 '''
             }

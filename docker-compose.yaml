@@ -1,0 +1,8 @@
+version: '3.8'
+services:
+  flask-app:
+    build: .
+    container_name: "Flask_container"
+    ports: 
+      - 8000:8000
+    restart: unless-stopped

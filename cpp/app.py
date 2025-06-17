@@ -138,7 +138,7 @@ if __name__ == '__main__':
     
     # Check if data file exists, create if not
     if not os.path.exists('data/crop_price_data.csv'):
-        print("Warning: data/crop_price_data.csv not found. Please create this file or run the data generation script.")
+        print("Warning!: data/crop_price_data.csv not found. Please create this file or run the data generation script.")
     
     # Start the Flask app
     app.run(debug=True, host="0.0.0.0", port=8000)
